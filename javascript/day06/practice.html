@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>下拉折叠</title>
+    <style>
+        html,body,ul,li {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style: none;
+        }
+        .menus {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        /* .menus > ul > li > ul , menus > ul > li > ul > li > ul{ */
+        .menus > ul > li > ul > li > ul{
+            display: none;
+            animation: myanimate .5s ease-in;
+            transition: all .3s  infinite;
+
+        }
+        .active {
+            background-color: brown;
+            color: #fff;
+        }
+        @keyframes myanimate{
+            0%{transform: scale(1,0)}
+            25%{transform: scale(1,1.2)}
+            50%{transform: scale(1,0.85)}
+            75%{transform: scale(1,1.05)}
+            100%{transform: scale(1,1)}
+        }
+    </style>
+</head>
+<body>
+    <div class="menus">
+        <!-- 省 -->
+        <ul>
+            <li>
+                河南省
+                <ul>
+                    <li>郑州市
+                        <ul>
+                            <li>巩义</li>
+                            <li>新郑</li>
+                            <li>新密</li>
+                        </ul>
+                    </li>
+                    <li>新乡市
+                        <ul>
+                            <li>辉县</li>
+                            <li>原阳</li>
+                            <li>封丘</li>
+                        </ul>
+                    </li>
+                    <li>开封市
+                        <ul>
+                            <li>杞县</li>
+                            <li>兰考县</li>
+                            <li>通许县</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                河北省
+                <ul>
+                    <li>邯郸
+                        <ul>
+                            <li>111</li>
+                        </ul>
+                    </li>
+                    <li>保定
+                        <ul>
+                            <li>222</li>
+                        </ul>
+                        
+                    </li>
+                    <li>唐山
+                        <ul>
+                            <li>333</li>
+                        </ul>
+                    </li>
+                    <li>石家庄
+                        <ul>
+                            <li>444</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class='navs one two three'>12345</div>
+    <script>
+        var div = document.querySelector('navs')
+        div.className = 'one'
+        div.classList.remove('one')
+
+    </script>
+</body>
+<script>
+    //onclick回调函数
+    var li_el = document.querySelectorAll('.menus > ul > li > ul > li')
+    var ul_el = document.querySelectorAll('.menus > ul > li > ul > li > ul')
+    //this离是最近，谁就是this
+    for (var i = 0; i<li_el.length ; i++ ){
+        var item = li_el[i]
+        item.index = i
+        console.log('this:',this)
+        item.onclick = function () {
+            console.log(this)
+            console.log(item.index)
+            //遍历所有的省
+            // for(var j=0 ; j < li_el.length ; j++){
+            //     li_el[j].className = ''
+            //     ul_el[j].style.display = 'none'
+            // }
+            // this.className = 'active'
+            // ul_el[this.index].style.display = 'block'  
+            console.log(this.querySelector('ul').style)
+            var flag = this.querySelector('ul').style.display
+            console.log('before:',flag)
+            console.log(this.querySelector('ul').style)
+            if(flag == 'none' || flag == ''){
+                flag ='block'
+            }else{
+                flag = 'none'
+            }   
+           this.querySelector('ul').style.display = flag     
+        }
+
+    }
+    // console.log(i)
+    // var three_li = document.querySelectorAll('.menus > ul > li > ul > li > ul')
+    // for(var i = 0 ; i < three_li.length ; i++){
+    //         var item = three_li[i]
+    //         item.index = i
+    //         item.onclick = function () {
+    //             console.log(this)
+    //         }    
+    //     } 
+    // }
+</script>
+</html>

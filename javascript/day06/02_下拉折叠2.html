@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>下拉折叠</title>
+    <style>
+        html,body,ul,li {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style: none;
+        }
+        .menus {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .menus > ul > li > ul {
+            display: none;
+        }
+        .active {
+            background-color: brown;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="menus">
+        <!-- 省 -->
+        <ul>
+            <li>
+                河南省
+                <ul>
+                    <li>郑州市</li>
+                    <li>新乡市</li>
+                    <li>开封市</li>
+                </ul>
+            </li>
+            <li>
+                河北省
+                <ul>
+                    <li>邯郸</li>
+                    <li>保定</li>
+                    <li>唐山</li>
+                    <li>石家庄</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class='navs one two three'>12345</div>
+    <script>
+        var div = document.querySelector('navs')
+        div.className = 'one'
+        div.classList.remove('one')
+
+    </script>
+</body>
+<script>
+    //onclick回调函数
+    var li_el = document.querySelectorAll('.menus > ul > li')
+    var ul_el = document.querySelectorAll('.menus > ul > li > ul')
+    //this离是最近，谁就是this
+    for (var i = 0; i<li_el.length ; i++ ){
+        var item = li_el[i]
+        item.index = i
+        console.log('this:',this)
+        item.onclick = function () {
+            console.log(this)
+            console.log(item.index)
+            //遍历所有的省
+            // for(var j=0 ; j < li_el.length ; j++){
+            //     li_el[j].className = ''
+            //     ul_el[j].style.display = 'none'
+            // }
+            // this.className = 'active'
+            // ul_el[this.index].style.display = 'block'  
+            console.log(this.querySelector('ul').style)
+            var flag = this.querySelector('ul').style.display
+            console.log('before:',flag)
+            console.log(this.querySelector('ul').style)
+            if(flag == 'none' || flag == ''){
+                flag ='block'
+            }else{
+                flag = 'none'
+            }   
+           this.querySelector('ul').style.display = flag     
+        }
+
+    }
+    
+</script>
+</html>

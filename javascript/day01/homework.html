@@ -1,0 +1,57 @@
+<!-- 1.怎么让一个不定宽的div,垂直水平居中；
+2.position 属性以及作用
+3.浮动与清除浮动
+4.什么是BFc? 哪些元素会胜出Bfc
+div 都有自己独立的空间。垂直方向会重叠
+5.box-sizing是什么？在什么场景使用？
+6.px\em\rem的区别？
+7.css的引入方式有哪些？link 和@import区别？
+8.流式布局和响应式布局的区别？
+
+9.渐进增强和优雅降级
+10.css隐藏元素的几种方式以及区别?
+
+
+判断一个年份是否是闰年，并输出2000年到3000年之间的闰年（）
+function find_years() {//输出所有的闰年 //返回一个数组}
+function check_years(year) { //是否是闰年 //boollean} -->
+<script>
+    //闰年判断
+    // I am a man. 反序
+    // .nam a ma I
+    // man. a am I
+    // 4年一润 百年不闰 4百年在闰
+    // 每4年是一个闰年，但是当年的年份是整百数时，必须是400的倍数才算
+    var a_num = 9/4;  //9 被除数 4除数
+    // && 并且 || 或者 == 比较运算符 返回
+    console.log(a_num)
+    // function check_years(year) {
+    //  外边传来的接口必须做判断
+            if (year > 0) {
+                return false
+
+            }
+            // 求余 判断能不能被4 整除
+    //     var condition_1 = year % 4 == 0;
+    //     //年份不能是整百数
+    //     var condition_2 = year % 100 != 0;
+    //     //年份是400的整数
+    //     var condition_3 = year % 400 == 0;
+        // return condition_1 && condition_2 || condition_3;
+
+    //     var condition_4 = condition_1 && condition_2 || condition_3;
+        function find_years(begin_year,end_year){
+            var all_years = [];
+            for(var year = 2000; year <=3000; year++){
+                var res = check_years(year);
+                if(res) {
+                    all_years.push(year)
+                }
+            }
+            return all_years;
+
+        }
+
+        
+    // }
+</script>

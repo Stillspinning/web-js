@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 1.HTML 内容？
+        xxx.html
+    对程序员来说： 两部分内容：1，标签 2，标签里面 的内容     
+    -->
+    <div id='show'></div>
+    <!-- 动态操作
+    1.要找到对应的标签
+    2.文档：document,所有文档都是字符串
+    3.什么是盒模型？
+    累积木的方式，对于盒子来说是有宽和高，元素的大小形状
+    4.通过标签对象进行样式属性设置
+    -->
+    <script>
+        //必须有个 抽象文档的对象 document ||getElementById 获取指定id选择器
+        var show = document.getElementById('show')
+        console.log(show)
+        console.log(typeof show)
+        console.log(typeof document)
+        //给指定内容 添加内容
+        // 1.1，只添加文字内容
+        show.innerText='hello world'
+        // show.innerText = '<h1>这是标题</h1>'
+        //1.2 如果内容包含标签 这需要使用下列方式，添加内容
+        // show.innerHTML = '<h1 style="color: red;">颜色内容</h1>'
+        //2.改变样式
+        show.style.backgroundColor = 'black';
+        show.style.textAlign = 'center';
+        
+    </script>
+    <div class="show_1"></div>
+    <div class="show_1"></div>
+    <div class="show_1"></div>
+    <script>
+        var div_show_1 = document.getElementsByClassName('show_1')
+        console.log(div_show_1)
+        //动态添加元素标签 新建一个元素
+        var new_el = document.createElement('p')
+        new_el.innerText = '这是段落标签'
+        new_el.style.color = '#FF0000'
+        new_el.style.backgroundColor = '#000'
+        //将新建标签 添加到指定的元素中
+        div_show_1[0].appendChild(new_el)
+
+        var ul_element = document.createElement('ul')
+        for(var i = 0; i < 4; i++){
+            var li = document.createElement('li')
+            li.innerText = i
+            li.style.heght = '50px';
+            li.style.lineHeight = '50px'
+            ul_element.appendChild(li)
+           
+        // }
+        // div_show_1[1].appendChild(ul_element)
+        // //获取页面上所有的div
+        // var all_div = document.getElementsByTagName('div')
+        //    console.log(all_div)
+   
+    </script>
+    // 现在的流行的写法 
+    // query 查询 Selector选择器 只会找到一个
+    <script>
+        //querySelector(选择器名称)  只会找到一个
+        var el_id = document.querySelector('#show')
+        console.log(el_id)
+        var el_class = document.querySelector('div.show') //只能找到第一个
+        console.log(el_class)
+        //可以找一堆
+        el_class = document.querySelectorAll('div.show')
+        el_class = document.querySelectorAll('div')
+        el_class = document.querySelectorAll('div>ul')
+        el_class = document.querySelectorAll('div.show>ul>li:nth-child(2)')
+        el_class = document.querySelectorAll('div.show,div.show>ul>li:nth-child(2)') // 复合条件
+        console.log(el_class[0])    
+    </script>
+</body>
+</html>
